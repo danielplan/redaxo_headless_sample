@@ -1,0 +1,3 @@
+[submodule "server/redaxo/src/addons/headless"]
+	path = server/redaxo/src/addons/headless
+	url = git@github.com:danielplan/redaxo_headless.git
