@@ -1,0 +1,37 @@
+---
+import Text from "../components/Text.astro";
+
+import {
+  getRedaxoArticle,
+  getRedaxoArticleSlices,
+} from "../lib/redaxo/structure";
+
+export interface Props {
+  id: number;
+}
+
+const { id } = Astro.props;
+const articleData = await getRedaxoArticle(id);
+const articleSlices = await getRedaxoArticleSlices(id);
+
+const moduleToComponent = new Map<string, any>([["text", Text]]);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{articleData.name} / Redaxo Frontend</title>
+  </head>
+  <body>
+    {
+      articleSlices.map((slice: any) => {
+        const Component = moduleToComponent.get(slice.module);
+        return <Component slice={slice} />;
+      })
+    }
+  </body>
+</html>
