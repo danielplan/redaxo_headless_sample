@@ -1,0 +1,43 @@
+---
+import Img from "../utils/Img.astro";
+
+const { slice } = Astro.props;
+
+const title = slice.values[1];
+const text = slice.values[2];
+const image = slice.media ? slice.media[1] : null;
+---
+
+<style>
+  h2 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  p {
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 1.8;
+  }
+  .module {
+    display: flex;
+    align-items: center;
+    & > * {
+      flex: 1;
+    }
+  }
+  .text-container {
+    padding-right: 20px;
+  }
+</style>
+<div class="container">
+  <div class="module">
+    <div class="text-container">
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="image-container">
+      <Img name={image} type="image_small" />
+    </div>
+  </div>
+</div>

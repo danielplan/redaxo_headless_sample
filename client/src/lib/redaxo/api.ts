@@ -1,9 +1,3 @@
-export interface Article {
-  id: number;
-  url: string;
-  name: string;
-}
-
 export async function sendRedaxoRequest(
   controller: string,
   endpoint: string,

@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("/fonts/NunitoSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("/fonts/NunitoSans-Bold.ttf");
+  font-weight: bold;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}

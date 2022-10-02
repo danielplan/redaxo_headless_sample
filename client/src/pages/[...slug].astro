@@ -1,27 +1,18 @@
 ---
 import Article from "../layouts/Article.astro";
-import { getRedaxoPages } from "../lib/redaxo/structure";
+import { getRoutes } from "../lib/helpers/routes";
+import "../scss/global.scss";
 
 export async function getStaticPaths() {
-  const pages = await getRedaxoPages();
-
-  return pages.map(({ url, id }) => {
-    let slug: string | undefined = url;
-    if (slug.startsWith("/")) {
-      slug = slug.substring(1);
-    }
-    if (slug.endsWith("/")) {
-      slug = slug.substring(0, slug.length - 1);
-    }
-    if (slug == "") {
-      slug = undefined;
-    }
-
-    return {
-      params: { slug },
-      props: { id },
-    };
-  });
+  const routes = await getRoutes();
+  return routes.map(({ id, slug }) => ({
+    params: {
+      slug,
+    },
+    props: {
+      id,
+    },
+  }));
 }
 
 const { id } = Astro.props;

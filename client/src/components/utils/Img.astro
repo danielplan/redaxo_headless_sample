@@ -1,0 +1,32 @@
+---
+import { getImage } from "../../lib/redaxo/media";
+import { Image } from "@astrojs/image/components";
+
+interface Props {
+  name: string;
+  type: string;
+}
+
+const { name, type } = Astro.props;
+
+const img = name ? await getImage(name, type) : null;
+---
+
+<style>
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+{
+  img && (
+    <Image
+      src={img.url}
+      alt={img.alt}
+      width={img.width}
+      height={img.height}
+      format="jpg"
+    />
+  )
+}

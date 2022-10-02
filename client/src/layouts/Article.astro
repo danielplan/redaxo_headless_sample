@@ -1,5 +1,6 @@
 ---
-import Text from "../components/Text.astro";
+import Header from "../components/layout/Header.astro";
+import Text from "../components/modules/Text.astro";
 
 import {
   getRedaxoArticle,
@@ -27,8 +28,9 @@ const moduleToComponent = new Map<string, any>([["text", Text]]);
     <title>{articleData.name} / Redaxo Frontend</title>
   </head>
   <body>
+    <Header articleId={id} />
     {
-      articleSlices.map((slice: any) => {
+      articleSlices?.map((slice: any) => {
         const Component = moduleToComponent.get(slice.module);
         return <Component slice={slice} />;
       })
